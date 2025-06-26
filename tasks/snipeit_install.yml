@@ -9,15 +9,14 @@
     creates: "{{ snipe_install_dir }}-{{ snipe_install_version }}"
   become: true
 
-- name: "Snipe install | Link downloaded file to {{ snipe_install_dir }}"
-  file:
+- name: "Copy {{ snipe_install_dir }}-{{ snipe_install_version }} in to {{ snipe_install_dir }}"
+  copy:
     src: "{{ snipe_install_dir }}-{{ snipe_install_version }}"
     dest: "{{ snipe_install_dir }}"
-    state: link
     mode: 0775
     owner: www-data
     group: www-data
-  become: true
+    remote_src: true
 
 - name: Snipe install | Change ownership
   file:
