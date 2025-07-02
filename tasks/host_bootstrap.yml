@@ -48,16 +48,13 @@
   become: true
   register: mysqlinstall
 
-- name: Set MySQL root Password
-  become: True
-  mysql_user: 
-    name: root
+- name: Create database user
+  mysql_user:
+    name: "{{ snipe_db_user }}"
     password: "{{ snipe_db_pass }}"
-    check_implicit_admin: yes
-    login_user: "root"
-    login_password: ""
+    check_implicit_admin: true
+    priv: '*.*:ALL'
     state: present
-  when: mysqlinstall.changed
 
 - name: Host Bootstrap | Mysql | Create database
   mysql_db:
