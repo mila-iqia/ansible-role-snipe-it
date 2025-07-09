@@ -11,7 +11,7 @@
 
 - name: "Copy {{ snipe_install_dir }}-{{ snipe_install_version }} in to {{ snipe_install_dir }}"
   copy:
-    src: "{{ snipe_install_dir }}-{{ snipe_install_version }}"
+    src: "{{ snipe_install_dir }}-{{ snipe_install_version }}/"
     dest: "{{ snipe_install_dir }}"
     mode: 0775
     owner: www-data
